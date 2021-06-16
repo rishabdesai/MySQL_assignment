@@ -48,8 +48,10 @@ from salespeople s
 inner join customers c
 group by s.sum ;
  
- use sales;
+ 
 /* assignment no 5 */
+use sales;
+
  -- Q1) Write a query that lists each order number followed by the name of the customer who made the order
  select o.onum, c.cname from orders o 
  inner join customers c
@@ -133,7 +135,67 @@ create table t1 (c1 int);
 insert into tableA values(1),(2),(3);
 
 
+/* assignment no 6*/
+show tables;
+select * from customers;
+select * from orders;
+select * from salespeople;
 
+-- q1) Write a query that uses a subquery to obtain all orders for the customer named Cisneros
+select * from orders where cnum= (select cnum from customers where cname ='Cisneros');
+
+-- q2) Write a query that selects the total amount in orders for each salesperson for whom this total
+-- is greater than the amount of the largest order in the table 
+
+select snum, sum(amt) from orders
+group by snum
+having sum(amt) > (select max(amt) from orders)
+order by snum;
+
+-- q3) Write a query that selects all customers whose ratings are equal to or greater than ANY
+-- customers of ‘Serres’ (salesman)
+
+select * from customers where rating >= (select min(rating) from salespeople s
+join customers c
+on s.snum = c.snum
+where sname='Serres'
+group by s.snum);
+
+-- q4) Write a query that will find all salespeople who have no customers located in their city.
+
+select s.sname, s.city sCity, c.city cCity from  salespeople s 
+join customers c
+on s.snum = c.snum
+where s.city != c.city
+order by sname;
+
+-- ***q5) Write a query that selects all orders for amounts greater than any for the customers in London.
+
+
+-- q6) Extract all the orders of Motika (salesman)
+
+select * from orders where snum=(select snum from salespeople where sname='Motika');
+
+-- ****q7) Select all orders that had amounts that were greater that at least one of the orders from ‘1990-10-04’.
+
+select * from orders where amt in (select amt from orders where odate='1990-10-04');
+
+-- q8) Select customers who have a greater rating than any other customer in Rome
+
+select * from customers where rating >=(select rating from customers where city='Rome');
+
+-- q9) Write a query that produces the names and ratings of all customers who have above average(amt) orders
+
+-- 10. Find all the orders of the salespeople servicing customers in London.
+-- 11. Find names and numbers of all salesperson who have more than one customer.
+-- 12. Find salespeople number, name and city who have multiple customers.
+-- 13. Find all orders with amounts smaller than any amount for a customer in San Jose.
+-- 14. Select those customers whose rating are higher than every customer in Paris.
+-- 15. Insert a new order on today’s date from customer Hoffman by salesman Peel of amount 1000 and onum 4001.
+-- 16. Insert a new order on today’s date from customer Liu by his salesman amount same as largest amount in orders and onum equal to max onum + 1.
+-- 17. Delete the order with highest onum.
+-- 18. Postpone the order with onum 4001 by one month.
+-- 19. Delete the order of Hoffman with amount 1000.
 
 
 
