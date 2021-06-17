@@ -212,15 +212,42 @@ join orders o on c.cnum= o.cnum
 where c.city='San Jose'
 group by c.cnum;
 
-select o.onum from orders o 
-
-
-
 -- 14. Select those customers whose rating are higher than every customer in Paris.
+
 -- 15. Insert a new order on today’s date from customer Hoffman by salesman Peel of amount 1000 and onum 4001.
--- 16. Insert a new order on today’s date from customer Liu by his salesman amount same as largest amount in orders and onum equal to max onum + 1.
+insert into orders values(4001,1000.00, curdate(),(select cnum from customers where cname='Hoffman'),(select snum from salespeople where sname='Peel'));
+
+-- ***16. Insert a new order on today’s date from customer Liu by his salesman amount same as largest amount in orders and onum equal to max onum + 1.
+
+select max(onum)+1 from orders;
+select max(amt) from orders;
+select curdate();
+select cnum from customers where cname='Liu';
+select snum from customers where cname='Liu';
+
+select * from orders;
+
+
+set @one =(select max(onum)+1 from orders);
+set @two =(select max(amt) from orders);
+set @three = curdate();
+set @four = (select cnum from customers where cname='Liu');
+set @five = (select snum from customers where cname='Liu');
+
+insert into orders values(@one, @two, @three, @four, @five);
+delete from orders where onum is null;
+select * from orders;
+
+
+
+
 -- 17. Delete the order with highest onum.
+
+delete from orders where onum = (select maxonum from (select max(onum) as maxonum from orders) as mn);
+
 -- 18. Postpone the order with onum 4001 by one month.
+
+
 -- 19. Delete the order of Hoffman with amount 1000.
 
 
