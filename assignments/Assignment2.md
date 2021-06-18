@@ -1,4 +1,4 @@
-## assignment no 2
+## assignment-2
 
 (Refer database - sales-db.sql)
 
