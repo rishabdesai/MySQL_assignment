@@ -102,7 +102,9 @@ group by c.cnum;
 -- 15. Insert a new order on today’s date from customer Hoffman by salesman Peel of amount 1000 and onum 4001.
 
 ```SQL
-insert into orders values(4001,1000.00, curdate(),(select cnum from customers where cname='Hoffman'),(select snum from salespeople where sname='Peel'));
+insert into orders values(4001,1000.00, curdate(),
+(select cnum from customers where cname='Hoffman'),
+(select snum from salespeople where sname='Peel'));
 ```
 
 -- ***16. Insert a new order on today’s date from customer Liu by his salesman amount same as largest amount in orders and onum equal to max onum + 1.
