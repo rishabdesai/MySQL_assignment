@@ -21,8 +21,8 @@ from emp;
 ----
 
 - Q) Count emp in each category
- - Option-1) using Views
-  - step1 - create view
+    - Option-1) using Views
+    step1 - create view
    ```SQL
    create view v_empCategory as
     select empno,ename, sal, 
@@ -34,15 +34,15 @@ from emp;
     from emp;
    ```
 
-  - step2 - add above view to GROUP BY clause
+    step2 - add above view to GROUP BY clause
    ```SQL
    select category, count(empno)
    from v_empCategory 
    group by category;
    ```
 
- - Option-2) using **derived table**
-  - Derived table is sub-query in **FROM clause**
+    - Option-2) using **derived table**
+    Derived table is sub-query in **FROM clause**
 
   ```SQL
   select category, count(empno) from
@@ -58,7 +58,7 @@ from emp;
 ----
 
 - Q) count emp in each dept & each category.
- -  step1) create join of emp and dept table
+step1) create join of emp and dept table
  
  ```SQL
  select dname, empno,ename, sal, 
@@ -70,7 +70,7 @@ from emp;
     inner join dept d on d.deptno = e.deptno;
  ```
 
- - step2) add to group by clause
+step2) add to group by clause
 
  ```SQL
  select dname, category, count(empno)
