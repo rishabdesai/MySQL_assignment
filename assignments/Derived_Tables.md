@@ -1,4 +1,5 @@
-## Derived Table
+# Derived Table
+
 (use clasword-db.sql)
 
 - Derived table is a virtual table returned from a **sub-query inside FROM clause** of outer query.

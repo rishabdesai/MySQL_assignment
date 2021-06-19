@@ -1,4 +1,5 @@
-### Lateral Derived Table
+# Lateral Derived Table
+
 (use clasword-db.sql)
 
 - It can refer the columns of preceding tables in same FROM clause (MySQL 8.0.14 and above version)
