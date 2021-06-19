@@ -7,6 +7,8 @@
 - derived tables make expession more readable than joins and corelated sub-queries.
 - It overcome limitations of groupby clause.
 
+----
+
 - Q) categories emp in three parts - rich, poor, middle
 
 ```SQL
