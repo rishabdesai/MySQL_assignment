@@ -10,10 +10,10 @@
 
 ----
 
-#### Q) categories emp in three parts - rich, poor, middle
+#### Q1) categories emp in three parts - rich, poor, middle
 
 ```SQL
-select empno,ename, sal, 
+select empno, ename, sal, 
 CASE
 when sal < 1500 then 'poor'
 when sal >2500 then 'rich'
@@ -21,11 +21,13 @@ else 'middle'
 end as 'category'
 from emp;
 ```
+
 ----
 
-#### Q) Count emp in each category
+#### Q2) Count emp in each category
 
-  - Option-1) using Views
+- Option-1) using Views (not recommended)
+
    ```SQL
     --step1 - create view
    create view v_empCategory as
@@ -43,8 +45,8 @@ from emp;
    group by category;
    ```
 
-  - Option-2) using **derived table**
-    Derived table is sub-query in **FROM clause**
+- Option-2) using **derived table**  (Recommended)
+Derived table is sub-query in **FROM clause**
 
   ```SQL
   select category, count(empno) from
@@ -60,7 +62,7 @@ from emp;
 
 ----
 
-#### Q) count emp in each dept & each category.
+#### Q3) count emp in each dept & each category
 
  ```SQL
  -- step1) create join of emp and dept table
@@ -70,7 +72,8 @@ from emp;
     when sal >2500 then 'rich'
     else 'middle'
     end as 'category' from emp e
-    inner join dept d on d.deptno = e.deptno;
+    inner join dept d 
+    on d.deptno = e.deptno;
 
 -- step2) add to group by clause
  select dname, category, count(empno)
@@ -88,8 +91,8 @@ from emp;
 
 ----
 
-#### Q) find emp with maximum sal in each dept
- 
+#### Q4) find emp with maximum sal in each dept
+
  ```SQL
  -- step1 find max sal of each dept
  select deptno, max(sal) from emp
@@ -105,7 +108,7 @@ from emp;
  where e.sal = md.mxsal;
  ```
 
-above code can also be written as
+above code can also be written as:
 
  ```SQL
  select e.empno, e.ename, e.sal, e.deptno
