@@ -1,7 +1,7 @@
 ## Derived Table
 (use clasword-db.sql)
 
-- Derived table is a virtual table returned from a **sub-query in FROM clause** of outer query.
+- Derived table is a virtual table returned from a **sub-query inside FROM clause** of outer query.
 - Also calledas **Inline View**
 - The derived table must have an alias.
 - derived tables make expession more readable than joins and corelated sub-queries.
@@ -9,7 +9,7 @@
 
 ----
 
-- Q) categories emp in three parts - rich, poor, middle
+#### Q) categories emp in three parts - rich, poor, middle
 
 ```SQL
 select empno,ename, sal, 
@@ -22,7 +22,7 @@ from emp;
 ```
 ----
 
-- Q) Count emp in each category
+#### Q) Count emp in each category
 
   - Option-1) using Views
    ```SQL
@@ -59,7 +59,7 @@ from emp;
 
 ----
 
-- Q) count emp in each dept & each category.
+#### Q) count emp in each dept & each category.
 
  ```SQL
  -- step1) create join of emp and dept table
@@ -87,7 +87,7 @@ from emp;
 
 ----
 
-- Q) find emp with maximum sal in each dept
+#### Q) find emp with maximum sal in each dept
  
  ```SQL
  -- step1 find max sal of each dept
@@ -117,11 +117,9 @@ above code can also be written as
  
  ```
 
- above code also cab be solved using corelated sub-query
+ above code also can be solved using corelated sub-query
 
   ```SQL
   select e.empno, e.ename, e.sal, e.deptno from emp e
   where e.sal =(select max(sal) from emp me where me.deptno = e.deptno);
   ```
-
-
