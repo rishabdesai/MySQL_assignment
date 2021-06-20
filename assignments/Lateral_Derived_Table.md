@@ -8,13 +8,13 @@
 
 ----
 
-#### Q) dispaly ename, sal, dname using join with derived table.
+#### Q1) dispaly ename, sal, dname using join with derived table.
 
 ```SQL
 select e.ename, e.sal, d.dname from emp e
 join (select d.dname from dept d where d.deptno = e.deptno) as d;
 
--- error in above code : SQL92 do not allw accessing earlier table(in FROM clause) reference inside the dereived table.
+-- error in above code: SQL92 dont allow accessing earlier table (in FROM clause) reference inside the dereived table.
 -- This limitation is removed in SQL99 adding concept of LATERAL derived tables.
 
 select e.ename, e.sal, d.dname from emp e
@@ -23,7 +23,7 @@ join LATERAL (select d.dname from dept d where d.deptno = e.deptno) as d;
 
 ----
 
-#### Q) For each salesperson display name, max order and customer number with max order.  
+#### Q2) For each salesperson display name, max order and customer number with max order.  
 
 ```SQL
 use sales;
