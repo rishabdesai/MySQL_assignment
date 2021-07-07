@@ -50,13 +50,13 @@ Derived table is sub-query in **FROM clause**
 
   ```SQL
   select category, count(empno) from
-  (select empno,ename, sal, 
-    CASE
-    when sal < 1500 then 'poor'
-    when sal >2500 then 'rich'
-    else 'middle'
-    end as 'category'
-    from emp) as emp_cat
+      (select empno,ename, sal, 
+      CASE
+      when sal < 1500 then 'poor'
+      when sal >2500 then 'rich'
+      else 'middle'
+      end as 'category'
+      from emp) as emp_cat
     group by category;
   ```
 
