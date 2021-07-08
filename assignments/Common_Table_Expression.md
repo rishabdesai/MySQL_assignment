@@ -37,7 +37,7 @@ where e.sal = md.mxsal;
 
 ----
 
-#### Find avg of department-wise total sal
+#### Q)Find avg of department-wise total sal
 
 ```SQL
 
@@ -59,7 +59,7 @@ select avg(total) from dept_total;
 
 ----
 
-#### Compare sal of each emp with avg(sal) in his dept and avg(sal) for his job.
+#### Q)Compare sal of each emp with avg(sal) in his dept and avg(sal) for his job.
 
 ```SQL
  -- avg sal for each job
@@ -96,7 +96,6 @@ join ed on e.deptno = ed.deptno;
 ## Recursive CTE
 
 -- function calling itself
-
 
 #### Q) print number 1 to 4 as a table.
 
@@ -191,9 +190,9 @@ select * from emp_hierarchy;
 
 ----
 
-## Multiple CTEs referring to each other.
+## Multiple CTEs referring to each other
 
-#### Q) Print emp with minimun salary in each dept.
+#### Q) Print emp with minimun salary in each dept
 
 ```SQL
 -- min sal dept wise

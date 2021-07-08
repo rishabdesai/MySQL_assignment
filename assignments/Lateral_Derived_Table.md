@@ -1,6 +1,6 @@
 # Lateral Derived Table
 
-(use clasword-db.sql)
+(use claswork-db.sql, sales-db.sql)
 
 - It can refer the columns of preceding tables in same FROM clause (MySQL 8.0.14 and above version)
 - This feature is added in SQL-99
@@ -23,10 +23,10 @@ join LATERAL (select d.dname from dept d where d.deptno = e.deptno) as d;
 
 ----
 
-#### Q2) For each salesperson display name, max order and customer number with max order.  
+#### Q2) For each salesperson- display name, max order and customer number with max order.  
 
 ```SQL
-use sales;
+use sales-db;
 select o.snum, max(o.amt) from orders o
 group by o.snum;
 

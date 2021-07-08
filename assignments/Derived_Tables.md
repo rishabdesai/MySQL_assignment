@@ -1,9 +1,9 @@
 # Derived Table
 
-(use clasword-db.sql)
+(use claswork-db.sql)
 
 - Derived table is a virtual table returned from a **sub-query inside FROM clause** of outer query.
-- Also calledas **Inline View**
+- Also called as **Inline View**
 - The derived table must have an alias.
 - derived tables make expession more readable than joins and corelated sub-queries.
 - It overcome limitations of groupby clause.
@@ -65,6 +65,7 @@ Derived table is sub-query in **FROM clause**
 #### Q3) count emp in each dept & each category
 
  ```SQL
+ 
  -- step1) create join of emp and dept table
  select dname, empno,ename, sal, 
     CASE
@@ -75,7 +76,7 @@ Derived table is sub-query in **FROM clause**
     inner join dept d 
     on d.deptno = e.deptno;
 
--- step2) add to group by clause
+-- step2) add to group by clause 
  select dname, category, count(empno)
  from
  (select dname, empno,ename, sal, 
@@ -87,6 +88,7 @@ Derived table is sub-query in **FROM clause**
     inner join dept d 
     on d.deptno = e.deptno) as emp_cat
     group by dname, category;
+
  ```
 
 ----
@@ -106,6 +108,7 @@ Derived table is sub-query in **FROM clause**
  group by deptno) as md
  on e.deptno = md.deptno
  where e.sal = md.mxsal;
+
  ```
 
 above code can also be written as:
@@ -124,6 +127,8 @@ above code can also be written as:
  above code also can be solved using corelated sub-query
 
   ```SQL
+
   select e.empno, e.ename, e.sal, e.deptno from emp e
   where e.sal =(select max(sal) from emp me where me.deptno = e.deptno);
+
   ```
